@@ -1,6 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 class App extends React.Component {
+
+	// State is a collection of values that are meant to be 
+	// manged by the components themselves.
+	// State are meant of what will change
+
+	constructor() {
+		super();
+		this.state = {
+			txt: 'Random Title',
+			longerText: 'Have an awesome Halloween in Havana'
+		};
+	}
+
+	update(e) {
+		this.setState({txt: e.target.value})
+	}
+
+
 	render() {
 		// The element we want to create, props, inner HTML
 		// Cannot return several dom nodes, as it would be the equivalent of returning
@@ -15,8 +33,8 @@ class App extends React.Component {
 
 		return ( // Wrap in paranthesis to utilize whitespace
 			<div>
-				<h1>Hello World</h1>
-				<b>Bold</b>
+				<h1>{this.state.txt}</h1>
+				<input type="text" onChange={this.update.bind(this)} />				
 				<br/>
 				<span>
 					An {country} {animal} has {numberOfLives} lives
@@ -39,6 +57,8 @@ App.defaultProps = {
 }
 
 
+// Props are meant to be passed into components as static values or methods
+// Props are static
 ReactDOM.render(<App animal="cat" numberOfLives={9} />, document.getElementById('app'));
 
 // Stateless function component (Does not have state)
